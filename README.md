@@ -17,6 +17,7 @@ these manifest files parses them and load the correct js files.
 
 A sample manifest file is below:
 
+```javascript
 {
   "name": "cache",
   "compiledFileHeader": "(function (angular, easilog) {",
@@ -36,9 +37,11 @@ A sample manifest file is below:
     ]
   }
 }
+```
 
 Then in your html file you would have this to load the module.
 
+```html
 <script type="json/angular-module" location="../../js/modules/cdn.manifest.json"></script>
 <script type="json/angular-module" location="../../js/modules/cache/cache.manifest.json"></script>
 <script type="json/angular-module" location="../../js/modules/i18n/i18n.manifest.json"></script>
@@ -48,6 +51,7 @@ Then in your html file you would have this to load the module.
 
 <!-- This script loads the manifest and then loads the js files needed -->
 <script src="../../js/module-loader/module-loader.js" load-remote-sources="false"></script>
+```
 
 There is a special type of manifest file called a CDN file which can list core dependencies that can be loaded outside
 of your source i.e the angular source.  Your manifest can then reference just the name of the dependency rather than
@@ -56,6 +60,7 @@ or remote sources of libraries by changing the 'load-remote-sources' flag on the
 
 Sample CDN manifest file:
 
+```javascript
 {
   "name": "cdn",
   "isCdnManifest": true,
@@ -86,9 +91,11 @@ Sample CDN manifest file:
     }
   }
 }
+```
 
 Sample manifest file that references a CDN manifest resource:
 
+```javascript
 {
   "name": "core",
   "compiledFileHeader": "(function (window) {",
@@ -136,9 +143,11 @@ Sample manifest file that references a CDN manifest resource:
     ]
   }
 }
+```
 
 I've also added a gulp task which can compile a manifest file into a single js file during your build process.  Usage:
 
+```javascript
 var gulp             = require('gulp'),
     easilog          = require('./easilog'),
     rev              = require('gulp-rev'),
@@ -159,3 +168,7 @@ gulp.task('compile-modules', function() {
     .pipe(rev.manifest())
     .pipe(gulp.dest('./dist/assets/js/'));
 });
+```
+
+Let me know if you need anymore info!  I doubt anyone is going to use this anyway so this is more for my reference in
+6 months!
