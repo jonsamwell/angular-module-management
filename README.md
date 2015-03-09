@@ -170,5 +170,11 @@ gulp.task('compile-modules', function() {
 });
 ```
 
+##Install the module
+
+bower install --save-dev "git://github.com/jonsamwell/angular-module-management.git#master"
+
 Let me know if you need anymore info!  I doubt anyone is going to use this anyway so this is more for my reference in
 6 months!
+
+This is still work in progess
