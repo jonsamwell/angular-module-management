@@ -1,0 +1,19 @@
+{
+  "name": "angular-module-management",
+  "version": "1.0.0",
+  "description": "Always the developer to create module manifest files for angular modules that are automatically loaded into a (dev)\r app and can used across different mini apps with a solution.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonsamwell/angular-module-management.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonsamwell/angular-module-management/issues"
+  },
+  "homepage": "https://github.com/jonsamwell/angular-module-management"
+}

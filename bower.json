@@ -1,0 +1,17 @@
+{
+  "name": "angular-module-management",
+  "version": "0.0.0",
+  "homepage": "https://github.com/jonsamwell/angular-module-management",
+  "authors": [
+    "jonsamwell@gmail.com"
+  ],
+  "description": "Load angular modules during development through manifest files",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
