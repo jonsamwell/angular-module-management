@@ -25,15 +25,18 @@ function gulpAngularModuleLoaderCompiler() {
     json = JSON.parse(file.contents);
     gutil.log(gutil.colors.green('Processing manifest module file:'), gutil.colors.cyan(json.name));
 
+    var allFiles = [];
     json.dependencies.js.forEach(function (dependency) {
       if (dependency.compileIntoSource === true) {
-        json.files.js.unshift(dependency.url);
+        allFiles.push(dependency.url);
       }
     });
 
+    allFiles.push.apply(allFiles, json.files.js);
+
     var streamqueueFn = [
       {objectMode: true},
-      gulp.src(json.files.js, {cwd: path.dirname(file.path)})
+      gulp.src(allFiles, {cwd: path.dirname(file.path)})
     ];
 
     if (json.files.html !== undefined && json.files.js.length > 0) {

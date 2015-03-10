@@ -1,0 +1,35 @@
+{
+  "bitwise": true,
+  "immed": true,
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "nonew": true,
+  "trailing": true,
+  "maxlen": 200,
+  "boss": true,
+  "eqnull": false,
+  "expr": true,
+  "globalstrict": false, // this gets put in by the build
+  "laxbreak": true,
+  "loopfunc": true,
+  "sub": true,
+  "undef": true,
+  "indent": 2,
+  "globals": {
+    "document": true,
+    "window": true,
+    "easilog": true,
+    "angular": true,
+    "sinon": true,
+    "module": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "inject": true,
+    "describe": true,
+    "expect": true,
+    "it": true,
+    "should": true,
+    "Velocity": true
+  }
+}
