@@ -20,8 +20,6 @@ A sample manifest file is below:
 ```javascript
 {
   "name": "cache",
-  "compiledFileHeader": "(function (angular, easilog) {",
-  "compiledFileFooter": "}(angular, easilog));",
   "dependencies": {
     "js": [{
       "name": "angular-cache",
@@ -34,7 +32,18 @@ A sample manifest file is below:
     "js": [
       "cache.module.js",
       "services/cacheService.js"
-    ]
+    ],
+    "html": [
+      "../*.tmpl.html"
+    }
+  },
+  "compilation": {
+    "fileHeader": "(function(angular) {",
+    "fileFooter": "}(angular));"
+  },
+  "ngTemplates": {
+    "moduleName": "app-templates",
+    "templateUrlPrefix": "templates/"
   }
 }
 ```

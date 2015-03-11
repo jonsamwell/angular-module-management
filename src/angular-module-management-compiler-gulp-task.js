@@ -39,19 +39,25 @@ function gulpAngularModuleLoaderCompiler() {
       gulp.src(allFiles, {cwd: path.dirname(file.path)})
     ];
 
-    if (json.files.html !== undefined && json.files.js.length > 0) {
+    if (json.ngTemplates !== undefined && json.files.html !== undefined && json.files.html.length > 0) {
       streamqueueFn.push(gulp.src(json.files.html, {cwd: path.dirname(file.path)})
         .pipe(minifyHtml({
           conditionals: true,
           empty: true
         }))
         .pipe(ngTemplateCache('templates.js', {
-          module: json.ngTemplatesModuleName,
+          module: json.ngTemplates.moduleName,
           base: function(templateFile) {
             var path = templateFile.relative;
-            //console.log('Orginal template path: ' + path);
             path = path.replace(/\\/g, '/');
-            //console.log('Modified template path: ' + path);
+            if (json.ngTemplates.templateUrlPrefix) {
+              path = json.ngTemplates.templateUrlPrefix + path;
+            }
+
+            if (json.ngTemplates.templateUrlPostfix) {
+              path += json.ngTemplates.templateUrlPostfix;
+            }
+
             return path;
           }
         })));
@@ -59,8 +65,8 @@ function gulpAngularModuleLoaderCompiler() {
 
     return streamqueue.apply(streamqueue, streamqueueFn)
       .pipe(concat(json.name + '.js'))
-      .pipe(gulpif(json.compiledFileHeader !== undefined, header(json.compiledFileHeader)))
-      .pipe(gulpif(json.compiledFileFooter !== undefined, footer(json.compiledFileFooter)))
+      .pipe(gulpif(json.compilation !== undefined && json.compilation.fileHeader !== undefined, header(json.compilation.fileHeader)))
+      .pipe(gulpif(json.compilation !== undefined && json.compilation.fileFooter !== undefined, footer(json.compilation.fileFooter)))
       .pipe(gutil.buffer(function(err, files) {
         cb(null, files[0]);
       }));
