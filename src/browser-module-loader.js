@@ -94,6 +94,7 @@
       };
       el.onload = loadedCallback;
 
+      el.setAttribute('charset', 'UTF-8');
       el.setAttribute('src', url);
       document.body.appendChild(el);
     }
@@ -291,7 +292,7 @@
           throw Error('json/angular-modules script tags must have a location attribute with the json urls in');
         }
       } else if (scriptElement.attributes[LOAD_REMOTE_SOURCES] !== undefined) {
-        loadRemoteSources = scriptElement.attributes[LOAD_REMOTE_SOURCES].value.toLowerCase() === true;
+        loadRemoteSources = scriptElement.attributes[LOAD_REMOTE_SOURCES].value.toLowerCase() === 'true';
       }
     }
 
