@@ -353,8 +353,11 @@
     }
 
     for (i = 0; i < manifestsJson.length; i += 1) {
-      manifests.push(new Manifest(manifestsJson[i], cdnManifest));
-      //console.log('***Parsed manifest file: ' + manifestsJson[i].name);
+      var file = manifestsJson[i];
+      if (file) {
+        manifests.push(new Manifest(file, cdnManifest));
+        //console.log('***Parsed manifest file: ' + manifestsJson[i].name);
+      }
     }
 
     return manifests;
