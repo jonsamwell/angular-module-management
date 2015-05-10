@@ -327,9 +327,13 @@
     var i,
         url,
         manifests = [],
+        loadedCount = 0,
+        loadCompleted = false,
         loadCompleteFn = function(data, order) {
           manifests[order] = data;
-          if (manifests.length >= context.urls.length) {
+          loadedCount += 1;
+          if (manifests.length >= context.urls.length && loadedCount === context.urls.length && loadCompleted === false) {
+            loadCompleted = true;
             callback(manifests, context.loadRemoteSources);
           }
         };
@@ -403,7 +407,7 @@
     function loadFn(files, index) {
       if (index < files.length) {
         var file = files[index];
-        if (loadedScripts.indexOf(file.name)) {
+        if (loadedScripts.indexOf(file.name) === -1) {
           loadedScripts.push(file.name);
           //console.log('Loading script: ' + file.name);
           file.load(loadRemoteSources, function() {
