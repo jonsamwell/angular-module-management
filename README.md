@@ -1,5 +1,5 @@
 # angular-module-management
-Always the developer to create module manifest files for angular modules that are automatically loaded into a (dev)
+Allows the developer to create module manifest files for angular modules that are automatically loaded into a (dev)
 app and can used across different mini apps with a solution.
 
 The process of creating a large angular app has many hard solutions to overcome.  One of the most problematic for me and the
