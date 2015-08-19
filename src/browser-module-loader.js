@@ -86,16 +86,26 @@
     function loadScript(url, loadedCallback) {
       // see this clever chap http://unixpapa.com/js/dyna.html
       var el = document.createElement('script');
-      el.type = 'text/javascript';
-      el.onreadystatechange = function() {
-        if (this.readyState === 'complete' || this.readyState === 'loaded') {
+      var scriptLoaded = false;
+
+      function scriptLoadedFn() {
+        if (scriptLoaded === false) {
+          scriptLoaded = true;
           loadedCallback();
         }
-      };
-      el.onload = loadedCallback;
+      }
 
+      el.type = 'text/javascript';
+      el.onload = scriptLoadedFn;
+      el.onreadystatechange = function() {
+        if (this.readyState === 'complete' || this.readyState === 'loaded') {
+          scriptLoadedFn();
+        }
+      };
+
+      // add random letters so the file is awlays retrieved and not cached
+      el.setAttribute('src', url + '?invalidate=' + Math.random().toString(36).substring(7));
       el.setAttribute('charset', 'UTF-8');
-      el.setAttribute('src', url);
       document.body.appendChild(el);
     }
 
